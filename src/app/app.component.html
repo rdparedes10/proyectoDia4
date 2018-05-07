@@ -1,0 +1,10 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <input type="text" (change)="addTask($event.target.value)" />
+</div>
+<div style="text-align:left">
+    <app-task [task]="task" *ngFor="let task of tasks" (clickInput)="updateTask($event)" (clickButton)="deleteTask($event)"></app-task>
+</div>
+<div style="text-align:center">
+    <app-buttons (clickAll)="showAllTask()" (clickComplete)="showCompleteTask()"></app-buttons>
+</div>
