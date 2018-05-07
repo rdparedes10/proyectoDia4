@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Task, TASK ,STATES} from './Task';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,21 @@ import { Task, TASK ,STATES} from './Task';
 export class AppComponent {
   tasks:Task[]= TASK;
   tasksBackup: Task[]=TASK;
+
+  urlData = 'https://gist.githubusercontent.com/jdjuan/165053e6cb479a840c88e3e94b33e724/raw/4542ef950b2b32fbe2eea0b3df0338ffe67eae12/todo.json';
+
+
+  constructor(httpClient: HttpClient) {
+    httpClient.get<any>(this.urlData).subscribe(data => {
+        console.log(data);
+        let addTask:Task = new Task(); 
+        let totalTasks = this.tasks.length;
+        addTask.id = totalTasks;
+        addTask.description = task;
+        addTask.state = STATES.ACTIVO;
+    });
+  }
+
   //Funcion para agregar Tareas
   addTask(task){
     console.log(task);
